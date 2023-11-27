@@ -13,7 +13,7 @@ export default function FormCadastro() {
 
   const [resposta, setResposta] = useState("");
 
-  const url = "http://10.0.149.110:8000";
+  const url = "http://192.168.0.60:8000";
 
   const handleClick = async () => {
     try {
