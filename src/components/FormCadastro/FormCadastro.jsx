@@ -13,7 +13,7 @@ export default function FormCadastro() {
 
   //const [resposta, setResposta] = useState("");
 
-  const url = " https://47ea-200-129-79-47.ngrok-free.app";
+  const url = "https://b6ae-200-129-79-47.ngrok-free.app";
   
   const handleClick = async () => {
     try {
