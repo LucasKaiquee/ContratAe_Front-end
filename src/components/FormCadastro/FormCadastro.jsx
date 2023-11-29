@@ -21,7 +21,7 @@ export default function FormCadastro() {
         nome: nameUser.current.value,
         email: emailUser.current.value,
         senha: senhaUser.current.value,
-        type: stateType,
+        type: "candidato",
         id: Math.random(1, 10000),
       };
 
