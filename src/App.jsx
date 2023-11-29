@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom'
-import Cadastro from './pages/Cadastro'
+import Entrar from './pages/Entrar'
 import Home from './pages/Home'
-import './App.css'
+import Cadastro from './pages/Cadastro'
 
 function App() {
 
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/cadastro' element={<Cadastro />} />
+      <Route path='/Entrar' element={<Entrar />} />
+      <Route path='/Cadastro' element={<Cadastro />} />
     </Routes>
   )
 }

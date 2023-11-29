@@ -1,27 +1,27 @@
 import { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-
-import './FormCadastro.css'
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function FormCadastro() {
+  //const navigate = useNavigate("");
   const location = useLocation("");
-  const stateType = location.state;
+
+  const [stateType, setStateType] = useState(location.state);
 
   const nameUser = useRef();
   const emailUser = useRef();
   const senhaUser = useRef();
 
-  const [resposta, setResposta] = useState("");
+  //const [resposta, setResposta] = useState("");
 
-  const url = "http://192.168.0.60:8000";
-
+  const url = " https://47ea-200-129-79-47.ngrok-free.app";
+  
   const handleClick = async () => {
     try {
       const user = {
         nome: nameUser.current.value,
         email: emailUser.current.value,
         senha: senhaUser.current.value,
-        type: "candidato",
+        type: stateType,
         id: Math.random(1, 10000),
       };
 
@@ -35,24 +35,53 @@ export default function FormCadastro() {
 
       const response = await fetch(url, options);
       const data = await response.json();
-      console.log(data);
-      setResposta(data);
+      console.log(data)
     } catch (e) {
       console.error(e);
     }
   };
 
-  const teste = () => {
-    window.alert(stateType);
-  };
-
-  return (
-    <form className="form-container"> 
-      <input type="text" name="nome" placeholder="Nome" ref={nameUser} />
-      <input type="text" name="email" placeholder="Email" ref={emailUser} />
-      <input type="text" name="senha" placeholder="Senha" ref={senhaUser} />
-      <button onClick={handleClick}>Enviar</button>
-      <h1>{resposta}</h1>
-    </form>
-  );
+  if (stateType) {
+    return (
+      <form className="form-container">
+        <h3>
+          Criar conta: <br /> 
+        </h3>
+        <input name="nome" placeholder="Nome" ref={nameUser} />
+        <input type="text" name="email" placeholder="Email" ref={emailUser} />
+        <input
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          ref={senhaUser}
+        />
+        <input
+          type="password"
+          name="senha"
+          placeholder="Confirmar Senha"
+          ref={senhaUser}
+        />
+        <button onClick={handleClick}>Criar conta</button>
+      </form>
+    );
+    
+  } else {
+    return (
+      <div className="question-type-user">
+        <h3>Você é ?</h3>
+        <button
+          className="button-type-user"
+          onClick={() => setStateType("recrutador")}
+        >
+          Recrutador
+        </button>
+        <button
+          className="button-type-user"
+          onClick={() => setStateType("candidato")}
+        >
+          Candidato
+        </button>
+      </div>
+    );
+  }
 }

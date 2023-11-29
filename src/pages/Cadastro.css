@@ -1,9 +1,0 @@
-.cadastro-container {
-    height: 100vh;
-    width: 100%;
-}
-
-.login {
-    display: flex;
-    gap: 40px;
-}
