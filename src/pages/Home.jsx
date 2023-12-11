@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "./Home.css"
 
+
 import Navbar from "../components/NavBar/Navbar"
 
 export default function Home() {
@@ -20,7 +21,6 @@ export default function Home() {
                 <button className='button-type-user' onClick={() => handleClick('recrutador')}>Recrutador</button>
                 <button className='button-type-user' onClick={() => handleClick('candidato')}>Candidato</button>
             </div>
-            
         </section>
     )
 }
