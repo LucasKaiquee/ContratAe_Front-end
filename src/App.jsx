@@ -12,7 +12,6 @@ function App() {
       <Route path='/Entrar' element={<Entrar />} />
       <Route path='/Cadastro' element={<Cadastro />} />
       <Route path='/CreatePage' element={<CreatePage />} />
-    
     </Routes>
   )
 }

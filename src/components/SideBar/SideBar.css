@@ -1,0 +1,47 @@
+section {
+    background-color: #0E1C24;
+    color: #fff;
+    height: 100vh;
+    width: 15vw;
+}
+.sidebar{
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-title{
+    font-size: 1.5rem;
+    padding: 1rem 0 1rem 2rem;
+}
+.sidebar-options{
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0 1rem 1.5rem;
+}
+.sidebar-options ul {
+    border-bottom: #00AFF9 2px solid;
+    margin-bottom: 4rem;
+}
+.sidebar-options li {
+    padding: 0.5rem 0;
+}
+.sidebar-options li:hover{
+    cursor: pointer;
+}
+.sidebar-btn {
+    color: #000000;
+    width: 40%;
+    text-align: center;
+    background-color: #007bff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition:  0.3s ease;
+}
+
+.sidebar-btn:hover {
+    background-color: #0056b3;
+    scale: 1.1;
+}

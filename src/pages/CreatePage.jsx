@@ -1,6 +1,6 @@
-import CriarVaga from "../components/CriarVaga/CriarVaga"
+import CriarVaga from "../components/SideBar/SideBar"
 
-export default function CreatePage() {
+export default function SideBar() {
     return (
         <section>
             <CriarVaga/>
