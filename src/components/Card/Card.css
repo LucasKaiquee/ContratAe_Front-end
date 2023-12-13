@@ -1,0 +1,68 @@
+.container-card-vaga {
+    background-color: #D9D9D9;
+    width: 60%;
+    height: 600px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-card-vaga p {
+    margin: 0;
+    font-size: 20px;
+}
+
+.info-extra p {
+    text-align: right;
+}
+
+.title-vaga {
+    font-size: 30px;
+    text-align: center;
+}
+
+.card-infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skill-element {
+    background-color: #00AFF9;
+    padding: 5px 40px;
+    margin: 0;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.skills-content {
+    display: flex;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.area-info p{
+
+}
+
+.button-card {
+    background-color: #00AFF9;
+    width: 50%;
+    padding: 5px 0;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    align-self: center;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.button-card:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.description {
+    margin-top: 30px;
+}
