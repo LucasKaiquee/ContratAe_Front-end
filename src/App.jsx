@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Cadastro from './pages/Cadastro'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './utils/ProtectedRoute'
+import CreatePage from './pages/CreatePage'
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
       </Route>
       <Route path='/' element={<Home />} />
       <Route path='/Cadastro' element={<Cadastro />} />
+      <Route path='/CreatePage' element={<CreatePage />} />
+    
     </Routes>
   )
 }
