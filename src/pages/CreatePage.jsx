@@ -3,14 +3,16 @@ import Navbar from "../components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
 import POST_SUPABASE from "../utils/postFunction";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../utils/supabase";
 
 import { useRef } from "react";
 
 import "./CreatePage.css";
 
 export default function CreatePage() {
-  const stateType = localStorage.getItem("type");
-  const user = JSON.parse(localStorage.getItem("userAuth"));
+  const stateType = sessionStorage.getItem("type");
+  console.log(stateType)
+  const user = JSON.parse(sessionStorage.getItem("userAuth"));
   const navigate = useNavigate("");
 
   const userRef = {
@@ -62,9 +64,19 @@ export default function CreatePage() {
       
       if( stateType === "candidato") {
         await POST_SUPABASE(stateType, userCandidato)
+        const {data: userAt, e} = await supabase
+        .from('candidato') 
+        .select('*')
+        .eq('uid', user.id);
+        sessionStorage.setItem("userAuth", userAt[0])
         navigate("/Dashboard")
       } else {
         await POST_SUPABASE("vaga", vagaCompleted)
+        const {data: userAt, e} = await supabase
+        .from('recrutador') 
+        .select('*')
+        .eq('uid', user.id);
+        sessionStorage.setItem("userAuth", userAt[0])
         navigate("/Dashboard")
       }
       

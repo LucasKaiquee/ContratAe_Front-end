@@ -6,16 +6,15 @@ import Cadastro from './pages/Cadastro'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './utils/ProtectedRoute'
 import CreatePage from './pages/CreatePage'
+import { useEffect } from 'react'
 
 
 function App() {
-
-  const [ authenticated, setAuthenticated ] = useState(false)
-
+  
   return (
     <Routes>
-      <Route path="/Entrar" element={<Entrar setAuthenticated={setAuthenticated} />} />
-      <Route path='/Dashboard' element={<ProtectedRoute authenticated={authenticated} />}>
+      <Route path="/Entrar" element={<Entrar />} />
+      <Route path='/Dashboard' element={<ProtectedRoute />}>
         <Route path='/Dashboard' element={<Dashboard/>} />
       </Route>
       <Route path='/' element={<Home />} />

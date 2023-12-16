@@ -1,36 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Perfil.css"
 
-export default function Perfil(){
-    const [user, setUser] = useState({})
+export default function Perfil( {user} ){
 
-    async function getPerfil(){
-        const URL_SUPABASE = "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato"
-        // const API_KEY = import.meta.env.SUPABASE_API_KEY
-        const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA"
-    
-        
-        const options = {
-            method: 'GET',
-            headers: {
-              'apikey': API_KEY,
-              'Authorization': `Bearer ${API_KEY}`,
-              'Content-Type': 'application/json',
-            },
-        };
-    
-        const response = await fetch(URL_SUPABASE, options);
-        const responseData = await response.json()
-        setUser(responseData[53])
-        console.log(responseData[53])
-    }
-    useEffect(() => {
-        getPerfil()
-    }, [])
-
-    console.log(user.skills)
     const lista = user.skills.split(",")
-    console.log(lista)
     return(
         <section className="perfil-section">
             <h1>Perfil</h1>
@@ -58,7 +31,7 @@ export default function Perfil(){
                         <h2>Cidade</h2>
                         <p>{user.cidade}</p>
                         <h2>Estado</h2>
-                        <p>{user.estado}</p>
+                        <p>{user.uf}</p>
                     </div>
                 </div>
             </div>

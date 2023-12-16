@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-const ProtectedRoute = ({ authenticated }) => {
-    return authenticated ? <Outlet /> : <Navigate to="/Entrar" />;
+const ProtectedRoute = () => {
+    const authenticated = sessionStorage.getItem("authenticated")
+    return authenticated === "true" ? <Outlet /> : <Navigate to="/Entrar" />;
 }
 
 export default ProtectedRoute

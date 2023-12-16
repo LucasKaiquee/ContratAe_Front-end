@@ -17,7 +17,7 @@ export default function FormCadastro({
   const [stateType, setStateType] = useState(location.state);
 
   useEffect(() => {
-    localStorage.setItem("type", stateType);
+    sessionStorage.setItem("type", stateType);
   }, [stateType]);
 
   // const validarsenha = (senha, confirmar) => {
@@ -29,7 +29,6 @@ export default function FormCadastro({
     const cpfInput = cpfUser.current.value;
     if (validaCPF(cpfInput)) {
       setValidation(true)
-      create
     } else {
       setValidation(false)
     }
@@ -51,9 +50,6 @@ export default function FormCadastro({
           placeholder="CPF"
           ref={cpfUser}
         />
-        <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>
-          CPF inválido !
-        </span>
         <input
           type="password"
           name="senha"
@@ -69,7 +65,7 @@ export default function FormCadastro({
         <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>
           Senhas diferentes !
         </span>
-        <button onClick={handleButtonClick}>Criar conta</button>
+        <button onClick={create}>Criar conta</button>
       </div>
     );
   } else {

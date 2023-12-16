@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function FormLogin({ login, cpfUser, senhaUser, emailUser}) {
+export default function FormLogin({ login, senhaUser, emailUser}) {
   const location = useLocation("");
   const navigate = useNavigate("")
 
   const [stateType, setStateType] = useState(location.state)
+
+  useEffect(() => {
+    sessionStorage.setItem("type", stateType);
+  }, [stateType]);
 
   if (stateType) {
     return (
@@ -15,7 +19,6 @@ export default function FormLogin({ login, cpfUser, senhaUser, emailUser}) {
          {stateType}
         </h3>
         <input type="email" name="email" placeholder="Email" ref={emailUser} />
-        <input type="text" name="CPF" placeholder="CPF" ref={cpfUser}  />
         <input type="text" name="senha" placeholder="Senha" ref={senhaUser}  />
         <button onClick={login}>Entrar</button>
         <p>Não tem cadastro ?</p>

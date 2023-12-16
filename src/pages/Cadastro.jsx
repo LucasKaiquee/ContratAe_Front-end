@@ -1,5 +1,4 @@
 import FormCadastro from "../components/FormCadastro/FormCadastro";
-import Footer from "../components/Footer/Footer";
 import Navbar from "../components/NavBar/Navbar";
 import { useRef, useState } from "react";
 import { supabase } from "../utils/supabase";
@@ -12,19 +11,19 @@ export default function Cadastro() {
 
   const navigate = useNavigate("")
 
-  const nameUser = useRef();
-  const emailUser = useRef();
-  const senhaUser = useRef();
-  const confirmarSenhaUser = useRef();
-  const cpfUser = useRef()
+  const nameUser = useRef("");
+  const emailUser = useRef("");
+  const senhaUser = useRef("");
+  const confirmarSenhaUser = useRef("");
+  const cpfUser = useRef("");
 
   const [user, setUser] = useState({})
 
   // const [resposta, setResposta] = useState("");
 
-  const URL_SUPABASE = "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato"
-  // const API_KEY = import.meta.env.SUPABASE_API_KEY
-  const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA"
+  // const URL_SUPABASE = "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato"
+  // // const API_KEY = import.meta.env.SUPABASE_API_KEY
+  // const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA"
 
   const handleClick = async () => {
     try {
@@ -46,15 +45,17 @@ export default function Cadastro() {
         const senha = await hashPassword(senhaUser.current.value)
         userJson.senha = senha
         userJson.cpf = cpfUser.current.value
-        localStorage.setItem("userAuth", JSON.stringify(userJson))
+        sessionStorage.setItem("userAuth", JSON.stringify(userJson))
         if(userJson.cpf != "") {
           await POST_SUPABASE("recrutador", {
             cpf: userJson.cpf,
             nome: userJson.nome,
             email: userJson.email,
-            senha: userJson.senha
+            senha: userJson.senha,
+            uid: userJson.id
           })
         }
+        sessionStorage.setItem("authenticated", true)
         navigate("/CreatePage")
       }
       
@@ -88,8 +89,6 @@ export default function Cadastro() {
           confirmarSenhaUser={confirmarSenhaUser}
         />
       </div>
-    
-      <Footer />
     </section>
   );
 }
