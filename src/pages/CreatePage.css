@@ -1,0 +1,21 @@
+.section-create {
+    width: 100vw;
+    margin-top: 100px;
+}
+
+.lista-dicas {
+    list-style: circle;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 80%;
+    font-size: 1.4rem;
+    margin: auto;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    gap: 20px;
+}
+
+.lista-dicas li {
+    width: 40%;
+}

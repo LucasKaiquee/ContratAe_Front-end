@@ -3,14 +3,16 @@ body{
     flex-direction: column;
     align-items: center; /* Add this line to center the section */
 }
-section {
+.criar-vaga{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 70vw;
+    height: 100%;
+    width: 80%;
+    margin: auto;
     background-color: #fff;
+    margin-bottom: 30px;
 }
 
 .title {
@@ -30,11 +32,11 @@ section {
 }
 .input-left-section{
     width: 50%;
-    padding-right: 1.25rem;
+    margin-right: 1rem;
 }
 .input-right-section{
     width: 50%;
-    padding-left: 1.25rem;
+    margin-left: 1rem;
 }
 .form-vaga {
     display: flex;
@@ -45,8 +47,8 @@ section {
     padding-left: 1rem;
     border-radius: 2%;
     margin-top: 2rem;
-    width: 35vw;
-    height: 25vh;
+    width: 100%;
+    height: 30vh;
     background-color: #ededed;
 }
 .text-box:focus{
@@ -70,22 +72,28 @@ input:focus{
     outline:0;
     
 }
-hr {
-        border-color: #d9d9d9;
-    }
 
 .form-btn {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #00AFF9;
+    color: #000000;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.25rem;
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
     transition:  0.35s ease;
 }
 
 .form-btn:hover {
-    background-color: #0056b3;
     scale: 1.1;
+}
+
+.img-create-page {
+    margin-top: 40px;
+    width: 100%;
+    height: 34vh;
 }

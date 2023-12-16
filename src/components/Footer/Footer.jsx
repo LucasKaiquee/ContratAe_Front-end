@@ -9,8 +9,8 @@ export default function Footer(){
         <footer>
             <div className="card footer-logo">
                 <h2>Contrat<span>Ae</span></h2>
-                <p>By Securitas Inc.</p>
-                <p>Conectando Talentos ao Futuro Professional.</p>
+                <p className='mt-[-10px]'>By Securitas Inc.</p>
+                <p className='mt-5'>Conectando Talentos ao Futuro Professional.</p>
             </div>
             <div className='card footer-redes'>
                 <p id='nossasRedes'>Nossas redes</p>
@@ -24,10 +24,10 @@ export default function Footer(){
                 <p>Todos os direitos reservados.</p>
             </div>
             <div className='card footer-links'>
-                <p><span>Links úteis:</span></p>
-                <p>Quem somos</p>
-                <a href='https://lucaskaiquee.github.io/Projeto_LM/' target="_blank" ><p>Conheça a Securitas Inc.</p></a>
-                <p>Fac</p>
+                <p ><span>Links úteis:</span></p>
+                <p className='cursor-pointer'>Quem somos</p>
+                <a href='https://lucaskaiquee.github.io/Projeto_LM/' target="__blank" ><p>Conheça a Securitas Inc.</p></a>
+                <p className='cursor-pointer'>FAQ</p>
             </div>
         </footer>
         </>

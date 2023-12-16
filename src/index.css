@@ -9,6 +9,10 @@
     font-family: 'Inder', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .form-container {
     display: flex;
     flex-direction: column;

@@ -30,67 +30,70 @@ export default function Entrar({ setAuthenticated }) {
     console.log(data)
   }
 
-  const handleClick = async () => {
-    try {
-
-    // const { data, error } = await supabase.auth.signInWithIdToken({
-    //   provider: 'google',
-    //   token: API_KEY
-    // })
-
-    // console.log(data)
-    setUser(data.user)
-    console.log(data.user)
-    console.log(data.user.id)
-    // console.log(error)
-
-    const newUSer = {
-          "cpf": cpfUser.current.value,
-          "nome": "Lucas Teste",
-          "email": "lucaskaique32244@gmail.com",
-          "senha": senhaUser.current.value,
-          "uid": data.user.id
-    }
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'apikey': API_KEY,
-        'Authorization': `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newUSer)
-    };
-
-    const response = await fetch(URL_SUPABASE, options)
-    const data1 = await response.json()
-
-    console.log(data1)
-    
-    } catch(e) {
-      console.error(e)
-    }
-    
-
+  const handleClick = () => {
   //   try {
-  //   //   const response = await supabase
-  //   //     .from("candidato")
-  //   //     .select("*")
-  //   //     .eq("cpf", cpfUser.current.value)
-  //   //     .single();
 
-  //   //     setUser(response.data)
-  //   //     console.log(user)
-  //   //     if (senhaUser.current.value != user.senha) {
-  //   //       console.log("Senha inválida")
-  //   //     }
+  //   // const { data, error } = await supabase.auth.signInWithIdToken({
+  //   //   provider: 'google',
+  //   //   token: API_KEY
+  //   // })
 
-  //   // } catch(e) {
-  //   //   console.error(e)
-  //   // }
+  //   // console.log(data)
+  //   setUser(data.user)
+  //   console.log(data.user)
+  //   console.log(data.user.id)
+  //   // console.log(error)
 
-  //   // // setAuthenticated(true)
-  //   // // navigate("/Dashboard")
+  //   const newUSer = {
+  //         "cpf": cpfUser.current.value,
+  //         "nome": "Lucas Teste",
+  //         "email": "lucaskaique32244@gmail.com",
+  //         "senha": senhaUser.current.value,
+  //         "uid": data.user.id
+  //   }
+
+    // const options = {
+    //   method: 'POST',
+    //   headers: {
+    //     'apikey': API_KEY,
+    //     'Authorization': `Bearer ${API_KEY}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(newUSer)
+    // };
+
+  //   const response = await fetch(URL_SUPABASE, options)
+  //   const data1 = await response.json()
+
+  //   console.log(data1)
+    
+  //   } catch(e) {
+  //     console.error(e)
+  //   }
+    
+
+  // //   try {
+  // //   //   const response = await supabase
+  // //   //     .from("candidato")
+  // //   //     .select("*")
+  // //   //     .eq("cpf", cpfUser.current.value)
+  // //   //     .single();
+
+  // //   //     setUser(response.data)
+  // //   //     console.log(user)
+  // //   //     if (senhaUser.current.value != user.senha) {
+  // //   //       console.log("Senha inválida")
+  // //   //     }
+
+  // //   // } catch(e) {
+  // //   //   console.error(e)
+  // //   // }
+
+  // //   // // setAuthenticated(true)
+  // //   // // navigate("/Dashboard")
+
+    setAuthenticated(true)
+    navigate("/Dashboard")
    }
 
   return (
@@ -102,7 +105,7 @@ export default function Entrar({ setAuthenticated }) {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illo nemo autem quo ducimus nulla commodi qui odio obcaecati perspiciatis deleniti itaque atque odit quisquam quos, totam rerum fuga laboriosam!</p>
           </div>
             <FormLogin
-             login={teste}
+             login={handleClick}
              cpfUser={cpfUser}
              senhaUser={senhaUser}
              emailuser={emailuser}

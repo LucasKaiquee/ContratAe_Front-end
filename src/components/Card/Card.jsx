@@ -1,30 +1,22 @@
 import "./Card.css"
 
-export default function Card() {
+// eslint-disable-next-line react/prop-types
+export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, requisito, salario }) {
 
-    const teste = [
-        "React",
-        "CSS",
-        "JavaScript",
-        "Java",
-        "Python",
-        "HTML",
-        "Testes",
-        "Tailwind",
-        "Sass",
-        "Figma"
-    ]
+    // eslint-disable-next-line react/prop-types
+    const listaRequisitos = requisito.split(",")
+    console.log(listaRequisitos)
 
     return(
         <div className="container-card-vaga">
-            <h2 className="title-vaga">Desenvolvedor Front - End</h2>
+            <h2 className="title-vaga">{nome}</h2>
 
             <div className="card-infos">
                 <div className="area-info">
                     <p>
-                        Área: Desenvolvedor React Js<br/>
-                        Empresa: Securitas Inc.<br/>
-                        Salário: R$ 20.000,00
+                        Área: {area}<br/>
+                        Empresa: {nomeEmpresa}<br/>
+                        Salário: R$ {salario},00
                     </p>
                 </div>
 
@@ -33,7 +25,7 @@ export default function Card() {
                         Tipo:<br/>
                         Remoto<br/>
                         Limite de Candidaturas:<br/>
-                        10
+                        {quantidade}
                     </p>
                 </div>
             </div>
@@ -42,7 +34,7 @@ export default function Card() {
                 <p>Requisitos:</p>
 
                 <div className="skills-content">
-                    {teste.map((e, i) => (
+                    {listaRequisitos.map((e, i) => (
                         <p key={i} className="skill-element">{e}</p>
                     ))}
                 </div>
@@ -50,7 +42,7 @@ export default function Card() {
 
             <div className="description">
                 <p>
-                    Descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium velit ipsam recusandae sint ipsum porro possimus laboriosam, maxime vero rerum voluptates nisi enim quidem corrupti eveniet distinctio doloremque sequi odio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam rem, quibusdam consequatur ipsa officiis debitis dignissimos quo laborum nostrum, fugiat, distinctio commodi nihil quasi neque odit eos quos voluptatibus iusto!
+                    Descrição: {descricao}
                 </p>
             </div>
 

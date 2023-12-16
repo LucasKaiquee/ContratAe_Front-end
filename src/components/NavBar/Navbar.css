@@ -9,6 +9,7 @@
     position: fixed;
     top: 0;
     padding: 0px 70px 0 70px;
+    z-index: 1;
 }
 
 .logo-navbar {

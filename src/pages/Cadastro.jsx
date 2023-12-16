@@ -2,13 +2,17 @@ import FormCadastro from "../components/FormCadastro/FormCadastro";
 import Navbar from "../components/NavBar/Navbar";
 import { useRef, useState } from "react";
 import { supabase } from "../utils/supabase";
+import { useNavigate, useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+import hashPassword from "../utils/passwordHash";
 
 export default function Cadastro() {
+
+  const navigate = useNavigate("")
 
   const nameUser = useRef();
   const emailUser = useRef();
   const senhaUser = useRef();
-  const cpfUser = useRef();
   const confirmarSenhaUser = useRef();
 
   const [user, setUser] = useState({})
@@ -28,31 +32,18 @@ export default function Cadastro() {
 
       if (error) {
         console.log(error)
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Esse Email já está registrado !"
+        });
       } else {
-        const newUser = {
-          cpf: cpfUser.current.value,
-          nome: nameUser.current.value,
-          email: emailUser.current.value,
-          senha: senhaUser.current.value,
-          uid: data.user.id
-        };
-  
-        const options = {
-          method: 'POST',
-          headers: {
-            'apikey': API_KEY,
-            'Authorization': `Bearer ${API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newUser)
-        };
-
-        console.log(user)
-
-        const response = await fetch(URL_SUPABASE, options);
-        const responseData = await response.json()
-        console.log(responseData)
-        // setUser(response)
+        const userJson = data.user
+        userJson.nome = nameUser.current.value
+        const senha = await hashPassword(senhaUser.current.value)
+        userJson.senha = senha
+        localStorage.setItem("userAuth", JSON.stringify(userJson))
+        navigate("/CreatePage")
       }
       
     } catch (e) {
@@ -80,7 +71,6 @@ export default function Cadastro() {
           create={handleClick}
           nameUser={nameUser}
           emailUser={emailUser}
-          cpfUser={cpfUser}
           senhaUser={senhaUser}
           confirmarSenhaUser={confirmarSenhaUser}
         />

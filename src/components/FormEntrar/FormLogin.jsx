@@ -14,7 +14,7 @@ export default function FormLogin({ login, cpfUser, senhaUser, emailUser}) {
         <h3>Entrar como: <br/>
          {stateType}
         </h3>
-        <input type="email" name="email" placeholder="email" ref={emailUser} />
+        <input type="email" name="email" placeholder="Email" ref={emailUser} />
         <input type="text" name="CPF" placeholder="CPF" ref={cpfUser}  />
         <input type="text" name="senha" placeholder="Senha" ref={senhaUser}  />
         <button onClick={login}>Entrar</button>
