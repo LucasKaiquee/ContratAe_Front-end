@@ -1,0 +1,97 @@
+section {
+    display: flex;
+    flex-direction: column;
+    padding: 2% 5% 2% 5%;
+    border: 1px solid #000;
+}
+section > h1{
+    text-align: left;
+    font-size: 3.5rem;
+}
+.top-area{
+    display: flex;
+}
+
+.left-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+}
+.left-area > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+.left-area > .info {
+    margin-bottom: 10%;
+}
+.left-area > .info >h2{
+    font-size: 2rem;
+
+}
+.left-area > .info >p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+.left-area > .skills > h2 {
+    font-size: 2rem;
+}
+.left-area > .skills > p {
+    margin: 0;
+} 
+.skill-area {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+.skill-element {
+    background-color: #00AFF9;
+    padding: 2px 20px;
+    margin: 4px 4px 4px 0px;
+    border-radius: 20px;
+    text-align: center;
+}
+.right-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.right-area > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+}
+.email-area {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+.email-area > p{
+    margin: 0;
+}
+.addr-area {
+    display: flex;
+    flex-direction: column;
+}
+.addr-area > p {
+    margin: 0;
+    padding-bottom: 4rem;
+}
+.email-area > h2, .addr-area > h2 {
+    font-size: 2rem;
+}
+.bottom-area >h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.bottom-area > p {
+    margin: 0;
+}
