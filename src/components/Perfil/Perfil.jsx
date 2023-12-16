@@ -21,12 +21,16 @@ export default function Perfil(){
     
         const response = await fetch(URL_SUPABASE, options);
         const responseData = await response.json()
-        setUser(responseData[38])
-        console.log(responseData[38])
+        setUser(responseData[53])
+        console.log(responseData[53])
     }
     useEffect(() => {
         getPerfil()
     }, [])
+
+    console.log(user.skills)
+    const lista = user.skills.split(",")
+    console.log(lista)
     return(
         <section>
             <h1>Perfil</h1>
@@ -38,7 +42,11 @@ export default function Perfil(){
                     </div>
                     <div className="skills">
                         <h2>Habilidades</h2>
-                        <p>{user.skills}</p>
+                        <div className="skill-area">
+                            {lista.map((skill, index) => (
+                                <p key={index} className="skill-element">{skill.split(',')}</p>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className="right-area">

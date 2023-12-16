@@ -34,6 +34,7 @@ section > h1{
 
 }
 .left-area > .info >p {
+    font-size: 1.2rem;
     margin: 0;
 }
 .left-area > .skills > h2 {
@@ -42,6 +43,18 @@ section > h1{
 .left-area > .skills > p {
     margin: 0;
 } 
+.skill-area {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+}
+.skill-element {
+    background-color: #00AFF9;
+    padding: 2px 20px;
+    margin: 4px 4px 4px 0px;
+    border-radius: 20px;
+    text-align: center;
+}
 .right-area{
     display: flex;
     flex-direction: column;
