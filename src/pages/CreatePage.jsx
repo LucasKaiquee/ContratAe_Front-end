@@ -1,9 +1,9 @@
-import CriarVaga from "../components/SideBar/SideBar"
+import Perfil from '../components/Perfil/Perfil'
 
 export default function SideBar() {
     return (
         <section>
-            <CriarVaga/>
+            <Perfil/>
         </section>
     )
 }
