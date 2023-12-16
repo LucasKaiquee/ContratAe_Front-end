@@ -52,7 +52,7 @@ export default function CreatePage() {
       };
 
       await fetch(URL_SUPABASE, options);
-      const user = localStorage.setItem("userAuth", JSON.stringify(userCandidato))
+      localStorage.setItem("userAuth", JSON.stringify(userCandidato))
     } catch (e) {
       window.alert("CPF já cadastrado na ContratAe.");
       console.error(e);

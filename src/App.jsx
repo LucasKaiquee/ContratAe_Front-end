@@ -20,7 +20,6 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/Cadastro' element={<Cadastro />} />
       <Route path='/CreatePage' element={<CreatePage />} />
-    
     </Routes>
   )
 }
