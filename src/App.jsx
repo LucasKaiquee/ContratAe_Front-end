@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './utils/ProtectedRoute'
 import CreatePage from './pages/CreatePage'
 
+
 function App() {
 
   const [ authenticated, setAuthenticated ] = useState(false)
