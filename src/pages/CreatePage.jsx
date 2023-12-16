@@ -1,6 +1,8 @@
 import CriarVaga from "../components/CriarVaga/CriarVaga";
 import Navbar from "../components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
+import POST_SUPABASE from "../utils/postFunction";
+import { useNavigate } from "react-router-dom";
 
 import { useRef } from "react";
 
@@ -9,6 +11,7 @@ import "./CreatePage.css";
 export default function CreatePage() {
   const stateType = localStorage.getItem("type");
   const user = JSON.parse(localStorage.getItem("userAuth"));
+  const navigate = useNavigate("");
 
   const userRef = {
     area: useRef(""),
@@ -19,13 +22,30 @@ export default function CreatePage() {
     cidade: useRef(""),
   };
 
-  const URL_SUPABASE =
-    "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato";
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA";
-
-  const createCandidato = async () => {
+  const vagaRef = {
+    nome: useRef(""),
+    area: useRef(""),
+    descricao: useRef(""),
+    quantidade: useRef(""),
+    nome_empresa: useRef(""),
+    salario: useRef(""),
+    requisito: useRef(""),
+  };
+    
+  const create = async () => {
     try {
+      const vagaCompleted = {
+        id_vaga: Math.floor(Math.random() * 999999) + 1,
+        nome: vagaRef.nome.current.value,
+        id_recrutador: user.cpf,
+        area: vagaRef.area.current.value,
+        descricao: vagaRef.descricao.current.value,
+        quantidade: vagaRef.quantidade.current.value,
+        nome_empresa: vagaRef.nome_empresa.current.value,
+        salario: vagaRef.salario.current.value,
+        requisito: vagaRef.requisito.current.value,
+      };
+
       const userCandidato = {
         cpf: userRef.cpf.current.value,
         nome: user.nome,
@@ -39,20 +59,15 @@ export default function CreatePage() {
         uid: user.id,
       };
 
-      console.log(userCandidato);
-
-      const options = {
-        method: "POST",
-        headers: {
-          apikey: API_KEY,
-          Authorization: `Bearer ${API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userCandidato),
-      };
-
-      await fetch(URL_SUPABASE, options);
-      localStorage.setItem("userAuth", JSON.stringify(userCandidato))
+      
+      if( stateType === "candidato") {
+        await POST_SUPABASE(stateType, userCandidato)
+        navigate("/Dashboard")
+      } else {
+        await POST_SUPABASE("vaga", vagaCompleted)
+        navigate("/Dashboard")
+      }
+      
     } catch (e) {
       window.alert("CPF já cadastrado na ContratAe.");
       console.error(e);
@@ -70,7 +85,7 @@ export default function CreatePage() {
           input2={"Digite suas Habilidades separadas por vírgula."}
           input3={"UF"}
           input4={"Cidade"}
-          buttonAction={createCandidato}
+          buttonAction={create}
           buttonTitle={"Completar Perfil"}
           type={stateType}
           userRef={userRef}
@@ -115,8 +130,10 @@ export default function CreatePage() {
           input2={"Competências separadas por virgula"}
           input3={"Área"}
           input4={"Empresa"}
-          buttonAction={null}
+          buttonAction={create}
+          type={stateType}
           buttonTitle={"Criar Vaga"}
+          userRef={vagaRef}
         />
         <Footer />
       </section>

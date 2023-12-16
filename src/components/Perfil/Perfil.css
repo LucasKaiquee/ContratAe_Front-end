@@ -1,10 +1,10 @@
-section {
+.perfil-section {
     display: flex;
     flex-direction: column;
     padding: 2% 5% 2% 5%;
     border: 1px solid #000;
 }
-section > h1{
+.perfil-section > h1{
     text-align: left;
     font-size: 3.5rem;
 }

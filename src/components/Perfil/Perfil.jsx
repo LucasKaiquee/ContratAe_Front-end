@@ -32,7 +32,7 @@ export default function Perfil(){
     const lista = user.skills.split(",")
     console.log(lista)
     return(
-        <section>
+        <section className="perfil-section">
             <h1>Perfil</h1>
             <div className="top-area">
                 <div className="left-area">

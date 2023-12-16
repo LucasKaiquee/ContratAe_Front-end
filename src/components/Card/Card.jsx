@@ -16,7 +16,7 @@ export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, r
                     <p>
                         Área: {area}<br/>
                         Empresa: {nomeEmpresa}<br/>
-                        Salário: R$ {salario},00
+                        Salário: R$ {salario}
                     </p>
                 </div>
 

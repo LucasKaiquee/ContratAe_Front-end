@@ -1,34 +1,39 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import validaCPF from "../../utils/validaCPF";
 
 export default function FormCadastro({
   nameUser,
   emailUser,
-  cpfUser,
   senhaUser,
   confirmarSenhaUser,
-  create,
+  cpfUser,
+  create
 }) {
 
-  const pattern = /[@]{3}/
-
-  const [validation, setValidation] = useState(true)
+  const [validation, setValidation] = useState(true);
 
   const location = useLocation("");
-  const [stateType, setStateType] = useState(location.state)
+  const [stateType, setStateType] = useState(location.state);
 
   useEffect(() => {
-    localStorage.setItem("type", stateType)
-  }, [stateType])
+    localStorage.setItem("type", stateType);
+  }, [stateType]);
 
-  const validarsenha = (senha, confirmar) => {
-    if (senha === confirmar) setValidation(true)
-    else setValidation(false)
-  }
+  // const validarsenha = (senha, confirmar) => {
+  //   if (senha === confirmar) setValidation(true);
+  //   else setValidation(false);
+  // };
 
-  const handleValidation = () => {
-    c
-  }
+  const handleButtonClick = () => {
+    const cpfInput = cpfUser.current.value;
+    if (validaCPF(cpfInput)) {
+      setValidation(true)
+      create
+    } else {
+      setValidation(false)
+    }
+  };
 
   if (stateType) {
     return (
@@ -38,14 +43,17 @@ export default function FormCadastro({
           {stateType}
         </h3>
         <input name="nome" placeholder="Nome" ref={nameUser} />
+        <input type="text" name="email" placeholder="Email" ref={emailUser} />
         <input
           type="text"
-          name="email"
-          placeholder="Email"
-          ref={emailUser}
+          name="cpf"
+          className={stateType === "recrutador" ? "" : "hidden"}
+          placeholder="CPF"
+          ref={cpfUser}
         />
-        {/* <input type="text" name="cpf" placeholder="CPF" ref={cpfUser} />
-        <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>CPF inválido !</span> */}
+        <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>
+          CPF inválido !
+        </span>
         <input
           type="password"
           name="senha"
@@ -56,19 +64,31 @@ export default function FormCadastro({
           type="password"
           name="senha"
           placeholder="Confirmar senha"
-          // ref={senhaUser}
+          ref={confirmarSenhaUser}
         />
-        <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>Senhas diferentes !</span>
-        <button onClick={create}>Criar conta</button>
+        <span className={validation ? "hidden" : "text-[red] text-lg w-[70%]"}>
+          Senhas diferentes !
+        </span>
+        <button onClick={handleButtonClick}>Criar conta</button>
       </div>
-    )} else {
-        return (
-            <div className="question-type-user">
-              <h3>
-                Você é ?
-              </h3>
-              <button className="button-type-user" onClick={() => (setStateType('recrutador'))}>Recrutador</button>
-              <button className="button-type-user" onClick={() => (setStateType('candidato'))}>Candidato</button>
-            </div>
-        )}
+    );
+  } else {
+    return (
+      <div className="question-type-user">
+        <h3>Você é ?</h3>
+        <button
+          className="button-type-user"
+          onClick={() => setStateType("recrutador")}
+        >
+          Recrutador
+        </button>
+        <button
+          className="button-type-user"
+          onClick={() => setStateType("candidato")}
+        >
+          Candidato
+        </button>
+      </div>
+    );
+  }
 }

@@ -2,6 +2,7 @@ import Card from "../components/Card/Card"
 import Navbar from "../components/NavBar/Navbar"
 import Footer from "../components/Footer/Footer"
 import { useNavigate } from "react-router-dom"
+import SideBar from "../components/SideBar/SideBar"
 
 import { useEffect, useState } from "react"
 import { Spinner } from "@material-tailwind/react"
@@ -46,10 +47,8 @@ export default function Dashboard() {
     return(
         <section className="dash-section">
             <Navbar />
-            <aside className={vaga.length != 0 ?'menu-lateral' : 'hidden'}>
-                <button>Ver vagas</button>
-                <button>Ver candidaturas</button>
-                <button onClick={() => navigate("/")}>Sair</button>
+            <aside className={vaga.length != 0 ? 'menu-lateral' : 'hidden'}>
+                <SideBar />
             </aside>
             <div className={vaga.length != 0 ?'info-area' : 'spinner-container'}>
                 { vaga.length != 0 ?
