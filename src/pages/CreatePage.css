@@ -19,3 +19,19 @@
 .lista-dicas li {
     width: 40%;
 }
+
+@media only screen and (max-width: 768px) {
+    .lista-dicas {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .lista-dicas li {
+        width: 90%;
+    }
+
+    .section-create h3 {
+        font-size: 30px;
+    }
+}

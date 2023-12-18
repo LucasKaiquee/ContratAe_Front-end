@@ -69,3 +69,13 @@ section, footer, header {
         font-size: 30px;
     }
 }
+
+@media only screen and (max-width: 568px) {
+    .title-home {
+        font-size: 2rem;
+    }
+
+    .button-type-user {
+        width: 250px;
+    }
+}

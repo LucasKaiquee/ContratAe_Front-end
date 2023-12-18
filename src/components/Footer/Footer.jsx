@@ -13,7 +13,7 @@ export default function Footer(){
                 <p className='mt-5'>Conectando Talentos ao Futuro Professional.</p>
             </div>
             <div className='card footer-redes'>
-                <p id='nossasRedes'>Nossas redes</p>
+                <h2 id='nossasRedes'>Nossas redes</h2>
                 <div id='icons'>
                     <i><FaInstagram/></i> 
                     <i><FaFacebookSquare/></i>
