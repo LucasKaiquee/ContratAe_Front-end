@@ -62,12 +62,8 @@
 
 @media only screen and (max-width: 668px) {
     .button-recuiter-area {
-        margin-top: 160px;
+        margin-top: 10px;
     }
-
-   .button-new-vaga {
-        margin-top: 70px;
-   }
 
    .card-recruiter {
     margin-bottom: 30px;
@@ -76,12 +72,12 @@
 
 @media only screen and (max-width: 508px) {
     .button-recuiter-area {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column-reverse;
+        align-items: flex-end;
         justify-content: center;
+        width: 95%;
         gap: 0;
     }
-
     
  }
 
