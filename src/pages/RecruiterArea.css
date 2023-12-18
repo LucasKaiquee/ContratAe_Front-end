@@ -1,0 +1,36 @@
+.recruiter-area {
+    width: 100vw;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.info-recruiter {
+    width: 100vw;
+    
+
+}
+
+.button-recuiter-area {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.button-action-recruiter {
+    width: 20%;
+    margin-top: 20px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #00AFF9;
+    border:  none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.5s;
+
+}
+
+.button-action-recruiter:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
+}

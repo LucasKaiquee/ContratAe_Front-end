@@ -1,7 +1,7 @@
 import "./Card.css"
 
 // eslint-disable-next-line react/prop-types
-export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, requisito, salario }) {
+export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, requisito, salario, buttonAction, buttonTitle }) {
 
     // eslint-disable-next-line react/prop-types
     const listaRequisitos = requisito.split(",")
@@ -46,7 +46,7 @@ export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, r
                 </p>
             </div>
 
-            <button className="button-card">Candidatar-se</button>
+            <button className="button-card" onClick={buttonAction}>{buttonTitle}</button>
         </div>
     )
 }

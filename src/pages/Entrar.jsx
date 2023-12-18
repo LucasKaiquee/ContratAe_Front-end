@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 // eslint-disable-next-line react/prop-types
 export default function Entrar() {
   const navigate = useNavigate('')
-  const stateType = sessionStorage.getItem("type")
 
   const senhaUser = useRef("");
   const emailUser = useRef("");
@@ -28,15 +27,33 @@ export default function Entrar() {
           title: "Oops...",
           text: "Email ou senha inválido !"
         });
+
       } else {
+
         const {data: user, e} = await supabase
         .from("candidato") 
         .select('*')
         .eq('uid', data.user.id);
-        console.log(user)
-        sessionStorage.setItem("userAuth", JSON.stringify(user[0]))
-        sessionStorage.setItem("authenticated", true)
-        navigate("/Dashboard")
+        
+        if(user.length === 0) {
+          const {data: user, e} = await supabase
+          .from("recrutador") 
+          .select('*')
+          .eq('uid', data.user.id);
+          console.log(data.user.id)
+          console.log(user)
+
+          sessionStorage.setItem("userAuth", JSON.stringify(user[0]))
+          sessionStorage.setItem("authenticated", true)
+          navigate("/RecruiterArea")
+          
+        } else {
+
+          sessionStorage.setItem("userAuth", JSON.stringify(user[0]))
+          sessionStorage.setItem("authenticated", true)
+          navigate("/Dashboard") 
+
+        }
       }
   
       console.log(data.user)

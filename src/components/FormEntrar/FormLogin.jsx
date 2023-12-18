@@ -7,6 +7,33 @@ export default function FormLogin({ login, senhaUser, emailUser}) {
   const navigate = useNavigate("")
 
   const [stateType, setStateType] = useState(location.state)
+  const [validation, setValidation] = useState({
+    email: true,
+    senha: true,
+  });
+
+  const handleLogin = () => {
+
+    const email = emailUser.current.value;
+    const senha = senhaUser.current.value;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setValidation(prevValidation => ({ ...prevValidation, email: true }));
+    } else {
+      setValidation(prevValidation => ({ ...prevValidation, email: false }));
+    }
+
+    if (senha) {
+      setValidation(prevValidation => ({ ...prevValidation, senha: true }));
+    } else {
+      setValidation(prevValidation => ({ ...prevValidation, senha: false }));
+    }
+
+    if (emailRegex.test(email) && senha) {
+      login();
+    }
+  }
 
   useEffect(() => {
     sessionStorage.setItem("type", stateType);
@@ -19,8 +46,14 @@ export default function FormLogin({ login, senhaUser, emailUser}) {
          {stateType}
         </h3>
         <input type="email" name="email" placeholder="Email" ref={emailUser} />
+        <span className={validation.email ? "hidden" : "text-[red] text-lg w-[70%]"}>
+          Email inválido!
+        </span>
         <input type="text" name="senha" placeholder="Senha" ref={senhaUser}  />
-        <button onClick={login}>Entrar</button>
+        <span className={validation.senha ? "hidden" : "text-[red] text-lg w-[70%]"}>
+          Senha obrigatória!
+        </span>
+        <button onClick={handleLogin}>Entrar</button>
         <p>Não tem cadastro ?</p>
         <button onClick={() => (navigate('/cadastro', {state: stateType}))}>Criar conta</button>
       </div>

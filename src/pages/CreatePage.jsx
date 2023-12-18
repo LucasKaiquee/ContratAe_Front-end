@@ -11,7 +11,6 @@ import "./CreatePage.css";
 
 export default function CreatePage() {
   const stateType = sessionStorage.getItem("type");
-  console.log(stateType)
   const user = JSON.parse(sessionStorage.getItem("userAuth"));
   const navigate = useNavigate("");
 
@@ -68,7 +67,7 @@ export default function CreatePage() {
         .from('candidato') 
         .select('*')
         .eq('uid', user.id);
-        sessionStorage.setItem("userAuth", userAt[0])
+        sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
         navigate("/Dashboard")
       } else {
         await POST_SUPABASE("vaga", vagaCompleted)
@@ -76,8 +75,8 @@ export default function CreatePage() {
         .from('recrutador') 
         .select('*')
         .eq('uid', user.id);
-        sessionStorage.setItem("userAuth", userAt[0])
-        navigate("/Dashboard")
+        sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
+        navigate("/RecruiterArea")
       }
       
     } catch (e) {

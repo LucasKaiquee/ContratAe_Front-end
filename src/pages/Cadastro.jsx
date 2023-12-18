@@ -1,8 +1,8 @@
 import FormCadastro from "../components/FormCadastro/FormCadastro";
 import Navbar from "../components/NavBar/Navbar";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { supabase } from "../utils/supabase";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import hashPassword from "../utils/passwordHash";
 import POST_SUPABASE from "../utils/postFunction";
@@ -16,14 +16,6 @@ export default function Cadastro() {
   const senhaUser = useRef("");
   const confirmarSenhaUser = useRef("");
   const cpfUser = useRef("");
-
-  const [user, setUser] = useState({})
-
-  // const [resposta, setResposta] = useState("");
-
-  // const URL_SUPABASE = "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato"
-  // // const API_KEY = import.meta.env.SUPABASE_API_KEY
-  // const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA"
 
   const handleClick = async () => {
     try {

@@ -3,7 +3,9 @@ import Navbar from "../components/NavBar/Navbar"
 import Footer from "../components/Footer/Footer"
 import { useNavigate } from "react-router-dom"
 import SideBar from "../components/SideBar/SideBar"
+import Swal from "sweetalert2"
 import Perfil from "../components/Perfil/Perfil"
+import POST_SUPABASE from "../utils/postFunction"
 
 import { useEffect, useState } from "react"
 import { Spinner } from "@material-tailwind/react"
@@ -14,7 +16,7 @@ export default function Dashboard() {
     const user = JSON.parse(sessionStorage.getItem("userAuth"))
 
     const navigate = useNavigate("")
-
+    
     const [showPerfil, setShowPerfil] = useState({
         status: false,
         class: ""
@@ -40,9 +42,10 @@ export default function Dashboard() {
                 status: false,
                 class: ""
             })
+
             const response = await fetch(URL_SUPABASE, options) 
             const data = await response.json()
-            console.log(data)
+
             setVaga(data)
             
         } catch(e) {
@@ -57,10 +60,34 @@ export default function Dashboard() {
         })
     }
 
-    const showCandidaturas = async () => {
-
+    const showCandidaturas = () => {
+        Swal.fire("Em fase de testes ! Logo estará disponível");
     }
 
+    const candidatar = async (vaga) => {
+        
+        const response = await POST_SUPABASE("candidaturas", {
+            "id_candidato": user.cpf,
+            "id_vaga": vaga
+        })
+        console.log(response)
+        if(response.ok) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Candidatura Registrada !",
+                showConfirmButton: false,
+                timer: 1500
+                });
+        } else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Você já se candidatou",
+            });
+        }
+    }    
+    
     useEffect(() => {
         getSupabaseVaga()
     },[])
@@ -89,6 +116,9 @@ export default function Dashboard() {
                             quantidade={e.quantidade}
                             requisito={e.requisito}
                             salario={e.salario}
+                            buttonAction={()=> candidatar(vaga[i].id_vaga)}
+                                
+                            buttonTitle={"Cndidatar - se"}
                         />
                     )) : <Spinner
                             className="h-12 w-12"

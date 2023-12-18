@@ -13,6 +13,7 @@
 }
 .top-area{
     display: flex;
+    flex-direction: column;
 }
 
 .left-area{
@@ -20,7 +21,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 50%;
 }
 .left-area > div {
     display: flex;
@@ -30,14 +30,16 @@
     width: 100%;
 }
 .left-area > .info {
-    margin-bottom: 10%;
+    margin-bottom: 2rem;
+    width: 100%;
 }
 .left-area > .info >h2{
-    font-size: 2rem;
+    font-size: 3rem;
+    width: 100%;
 
 }
 .left-area > .info >p {
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin: 0;
 }
 .left-area > .skills > h2 {
@@ -58,24 +60,11 @@
     border-radius: 20px;
     text-align: center;
 }
-.right-area{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-}
-.right-area > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    width: 100%;
-}
 .email-area {
     display: flex;
     flex-direction: column;
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
+    margin-top: 20px;
 }
 .email-area > p{
     margin: 0;
@@ -86,15 +75,16 @@
 }
 .addr-area > p {
     margin: 0;
-    padding-bottom: 4rem;
+    padding-bottom: 1rem;
 }
 .email-area > h2, .addr-area > h2 {
-    font-size: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
-.bottom-area >h2 {
+.description-area >h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
-.bottom-area > p {
+.description-area > p {
     margin: 0;
 }

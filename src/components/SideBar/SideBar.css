@@ -15,14 +15,16 @@
     padding: 1rem 0 1rem 1.5rem;
 }
 .sidebar-options ul {
-    border-bottom: #00AFF9 2px solid;
     margin-bottom: 4rem;
 }
 .sidebar-options li {
     padding: 0.5rem 0;
+    border-bottom: 2px solid #00AFF9;
 }
 .sidebar-options li:hover{
     cursor: pointer;
+    color: #00AFF9;
+    transition: 0.3s;
 }
 .sidebar-btn {
     color: #000000;
