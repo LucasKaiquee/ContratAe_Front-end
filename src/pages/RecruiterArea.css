@@ -29,8 +29,60 @@
     transition: 0.5s;
 
 }
+.card-recruiter{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
 
 .button-action-recruiter:hover {
     transform: scale(1.1);
     transition: 0.5s;
 }
+
+.button-new-vaga {
+    font-size: 2.3rem;
+    color: #00AFF9;
+    margin-left: 40px;
+    position: fixed;
+}
+
+@media only screen and (max-width: 1000px) {
+    .card-recruiter {
+        width: 100%;
+    }
+
+    .button-action-recruiter {
+        width: 130px;
+        font-size: 12px;
+    }
+
+}
+
+@media only screen and (max-width: 668px) {
+    .button-recuiter-area {
+        margin-top: 160px;
+    }
+
+   .button-new-vaga {
+        margin-top: 70px;
+   }
+
+   .card-recruiter {
+    margin-bottom: 30px;
+   }
+}
+
+@media only screen and (max-width: 508px) {
+    .button-recuiter-area {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+    }
+
+    
+ }
+
+

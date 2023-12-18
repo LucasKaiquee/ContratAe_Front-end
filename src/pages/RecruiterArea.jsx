@@ -3,8 +3,10 @@ import Card from "../components/Card/Card";
 import Navbar from "../components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
 import { Spinner } from "@material-tailwind/react";
+import { FaPlusCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase";
+import { useNavigate } from "react-router-dom";
 import "./RecruiterArea.css";
 
 export default function RecruiterArea() {
@@ -12,6 +14,7 @@ export default function RecruiterArea() {
     data: [],
     showVaga: false
   });
+  const navigate = useNavigate("");
   // const [showVaga, setShowVaga] = useState(false);
   const userRecruiter = JSON.parse(sessionStorage.getItem("userAuth"));
 
@@ -72,12 +75,13 @@ export default function RecruiterArea() {
   return (
     <section className="recruiter-area">
       <Navbar />
+      <button onClick={() => {navigate("/CreatePage")}} className="button-new-vaga" title="Criar vaga"><FaPlusCircle /></button>
       <div className="button-recuiter-area">
         <button onClick={() => {hadleShowVagas()}} className="button-action-recruiter">Ver minhas vagas</button>
         <button onClick={() => {getSupabaseCandidatos()}} className="button-action-recruiter">Ver Candidatos</button>
       </div>
       
-      <div className="w-[70%] m-auto my-[2rem]">
+      <div className="card-recruiter">
         {data.showVaga ? (
           data.data.map((e, i) => (
             <Card

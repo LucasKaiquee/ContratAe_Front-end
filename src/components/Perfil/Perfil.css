@@ -3,7 +3,7 @@
     flex-direction: column;
     padding: 2% 5% 2% 5%;
     border: 2px solid #000;
-    width: 60%;
+    width: 95%;
     margin: auto;
     margin-bottom: 70px;
 }
@@ -88,3 +88,14 @@
 .description-area > p {
     margin: 0;
 }
+
+@media only screen and (max-width: 668px) {
+    .left-area > .info >h2 {
+        font-size: 2rem;
+    }
+
+    .left-area > .info >p {
+        font-size: 1rem;
+    }
+ }
+ 

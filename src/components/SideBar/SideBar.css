@@ -1,18 +1,19 @@
 .sidebar{
-    color: #000000;
+    color: #ffffff;
+    background-color: #343d41;
     display: flex;
     flex-direction: column;
     position: fixed;
+    padding: 30px;
+
 }
 .sidebar-title{
     font-size: 1.5rem;
-    padding: 1rem 0 1rem 2rem;
 }
 .sidebar-options{
     font-size: 1.2rem;
     display: flex;
     flex-direction: column;
-    padding: 1rem 0 1rem 1.5rem;
 }
 .sidebar-options ul {
     margin-bottom: 4rem;

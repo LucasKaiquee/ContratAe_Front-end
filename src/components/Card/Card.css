@@ -1,8 +1,9 @@
 .container-card-vaga {
     background-color: #D9D9D9;
-    width: 100%;
+    width: 95%;
     height: 100%;
     padding: 20px;
+    margin: auto;
     border-radius: 10px;
     display: flex;
     flex-direction: column;

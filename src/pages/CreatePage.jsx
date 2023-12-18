@@ -75,7 +75,9 @@ export default function CreatePage() {
         .from('recrutador') 
         .select('*')
         .eq('uid', user.id);
-        sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
+        if(userAt){
+          sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
+        }
         navigate("/RecruiterArea")
       }
       
