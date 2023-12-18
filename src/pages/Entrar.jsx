@@ -69,7 +69,7 @@ export default function Entrar() {
         <div className="login">
           <div className="text-content-cadastro"> 
             <h3 className="logo-title">Contrat<span>Ae</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos illo nemo autem quo ducimus nulla commodi qui odio obcaecati perspiciatis deleniti itaque atque odit quisquam quos, totam rerum fuga laboriosam!</p>
+            <p>Em um cenário profissional desafiador, a escolha certa pode ser a chave para o sucesso. ContratAe não é apenas uma plataforma de empregos; é uma ferramenta de transformação. Ao escolher ContratAe, você não apenas busca empregos; busca oportunidades que alinham-se com seus objetivos. Nossa inovação em recrutamento utiliza algoritmos avançados para sugerir oportunidades personalizadas, indo além das buscas convencionais.</p>
           </div>
             <FormLogin
              login={handleButtonClick}

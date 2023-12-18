@@ -49,7 +49,7 @@ export default function FormLogin({ login, senhaUser, emailUser}) {
         <span className={validation.email ? "hidden" : "text-[red] text-lg w-[70%]"}>
           Email inválido!
         </span>
-        <input type="text" name="senha" placeholder="Senha" ref={senhaUser}  />
+        <input type="password" name="senha" placeholder="Senha" ref={senhaUser}  />
         <span className={validation.senha ? "hidden" : "text-[red] text-lg w-[70%]"}>
           Senha obrigatória!
         </span>

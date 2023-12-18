@@ -126,7 +126,7 @@ export default function Dashboard() {
               requisito={e.requisito}
               salario={e.salario}
               buttonAction={() => candidatar(vaga[i].id_vaga)}
-              buttonTitle={"Cndidatar - se"}
+              buttonTitle={"Candidatar - se"}
             />
           ))
         ) : (

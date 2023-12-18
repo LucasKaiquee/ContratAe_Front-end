@@ -95,7 +95,7 @@ input::placeholder {
 }
 
 .text-content-cadastro p {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 p {
@@ -135,7 +135,11 @@ p {
   }
 
   .text-content-cadastro p {
-    font-size: 30px;
+    font-size: 18px;
+  }
+
+  .text-content-cadastro {
+    width: 90%;
   }
 }
 
