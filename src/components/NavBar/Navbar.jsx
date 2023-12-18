@@ -23,7 +23,7 @@ export default function Navbar() {
   }, [])
   
 
-  if (auth === "false") {
+  if (auth === null || auth === "false") {
     return (
       <header className="navbar">
         <h3 className="logo-navbar" onClick={() => handleCLick("")}>
@@ -44,7 +44,7 @@ export default function Navbar() {
         </nav>
       </header>
     );
-  } else {
+  } else if(auth === "true") {
     return (
       <header className="navbar">
         <h3 className="logo-navbar" onClick={() => handleCLick("")}>

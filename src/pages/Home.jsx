@@ -17,8 +17,8 @@ export default function Home() {
         <section className='home-container'>
             <Navbar />
             <h1 className="title-home">Conectando Talentos ao Futuro Profissional.</h1>
-            <p className={auth === "false" ? "font-bold" : "hidden"}>Entrar Como:</p>
-            <div className={auth === "false" ? "button-container" : "hidden"}>
+            <p className={auth === "true" ?  "hidden": "font-bold"}>Entrar Como:</p>
+            <div className={auth === "true" ?  "hidden": "button-container"}>
                 <button className='button-type-user' onClick={() => handleClick('recrutador')}>Recrutador</button>
                 <button className='button-type-user' onClick={() => handleClick('candidato')}>Candidato</button>
             </div>
