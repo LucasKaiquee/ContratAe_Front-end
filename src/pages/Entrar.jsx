@@ -35,7 +35,7 @@ export default function Entrar() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Email ou senha inválido !",
+          text: data.message,
         });
       } else {
         sessionStorage.setItem("userAuth", cpfUser.current.value)
