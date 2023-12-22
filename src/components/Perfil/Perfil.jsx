@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import "./Perfil.css";
 
 export default function Perfil({ user }) {
-  const lista = user.skills.split(",");
+  console.log(user)
+  const lista = user.skills
   return (
     <section className="perfil-section">
       <div className="top-area">
@@ -14,11 +15,11 @@ export default function Perfil({ user }) {
           <div className="skills">
             <h2>Habilidades</h2>
             <div className="skill-area">
-              {lista.map((skill, index) => (
+              {/* {lista.map((skill, index) => (
                 <p key={index} className="skill-element">
-                  {skill.split(",")}
+                  {skill}
                 </p>
-              ))}
+              ))} */}
             </div>
             <div className="email-area">
               <h2>Email:</h2>

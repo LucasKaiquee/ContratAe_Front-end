@@ -1,9 +1,9 @@
 import CriarVaga from "../components/CriarVaga/CriarVaga";
 import Navbar from "../components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
-import POST_SUPABASE from "../utils/postFunction";
+import POST_SPC from "../utils/postFunction";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "../utils/supabase";
+import Swal from "sweetalert2";
 
 import { useRef } from "react";
 
@@ -11,7 +11,7 @@ import "./CreatePage.css";
 
 export default function CreatePage() {
   const stateType = sessionStorage.getItem("type");
-  const user = JSON.parse(sessionStorage.getItem("userAuth"));
+  const user = sessionStorage.getItem("userAuth");
   const navigate = useNavigate("");
 
   const userRef = {
@@ -32,57 +32,52 @@ export default function CreatePage() {
     salario: useRef(""),
     requisito: useRef(""),
   };
-    
+
   const create = async () => {
     try {
-      const vagaCompleted = {
-        id_vaga: Math.floor(Math.random() * 999999) + 1,
-        nome: vagaRef.nome.current.value,
-        id_recrutador: user.cpf,
-        area: vagaRef.area.current.value,
-        descricao: vagaRef.descricao.current.value,
-        quantidade: vagaRef.quantidade.current.value,
-        nome_empresa: vagaRef.nome_empresa.current.value,
-        salario: vagaRef.salario.current.value,
-        requisito: vagaRef.requisito.current.value,
-      };
-
-      const userCandidato = {
-        cpf: userRef.cpf.current.value,
-        nome: user.nome,
-        email: user.email,
-        senha: user.senha,
-        skills: userRef.skill.current.value,
-        area: userRef.area.current.value,
-        descricao: userRef.descricao.current.value,
-        cidade: userRef.cidade.current.value,
-        uf: userRef.uf.current.value,
-        uid: user.id,
-      };
-
-      
-      if( stateType === "candidato") {
-        await POST_SUPABASE(stateType, userCandidato)
-        const {data: userAt, e} = await supabase
-        .from('candidato') 
-        .select('*')
-        .eq('uid', user.id);
-        sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
-        navigate("/Dashboard")
-      } else {
-        await POST_SUPABASE("vaga", vagaCompleted)
-        const {data: userAt, e} = await supabase
-        .from('recrutador') 
-        .select('*')
-        .eq('uid', user.id);
-        if(userAt){
-          sessionStorage.setItem("userAuth", JSON.stringify(userAt[0]))
+      console.log(stateType)
+      if (stateType === "candidato") {
+        const response = await POST_SPC({
+          "protocol_msg": "completarPerfil",
+          "cpf": user,
+          "skills": userRef.skill.current.value,
+          "area": userRef.area.current.value,
+          "descricao": userRef.descricao.current.value,
+          "cidade": userRef.cidade.current.value,
+          "uf": userRef.uf.current.value,
+        });
+        
+        const data = await response.json()
+        console.log(data)
+        if(data.status === "201 Created") {
+          navigate("/Dashboard");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Estamos com Problemas tecnicos !",
+          });
         }
-        navigate("/RecruiterArea")
+
+      } else {
+        const response = await POST_SPC({
+          "protocol_msg": "criarVaga",
+          "cpf": user,
+          "vaga_info" : {
+            "nome_vaga": vagaRef.nome.current.value,
+            "area_vaga": vagaRef.area.current.value,
+            "descricao_vaga": vagaRef.descricao.current.value,
+            "quant_candidaturas": vagaRef.quantidade.current.value,
+            "salario_vaga": vagaRef.salario.current.value,
+            "requisitos": vagaRef.requisito.current.value,
+          }
+        })
+        const data = await response.json()
+        if (data.status === "201 Created") {
+          navigate("/RecruiterArea");
+        }
       }
-      
     } catch (e) {
-      window.alert("CPF já cadastrado na ContratAe.");
       console.error(e);
     }
   };

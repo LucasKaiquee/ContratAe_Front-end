@@ -5,7 +5,6 @@ export default function Card({ nome, area, descricao, nomeEmpresa, quantidade, r
 
     // eslint-disable-next-line react/prop-types
     const listaRequisitos = requisito.split(",")
-    console.log(listaRequisitos)
 
     return(
         <div className="container-card-vaga">

@@ -7,7 +7,8 @@ export default function FormCadastro({
   senhaUser,
   confirmarSenhaUser,
   cpfUser,
-  create
+  create,
+  empresa
 }) {
 
   const [validation, setValidation] = useState({
@@ -86,13 +87,19 @@ export default function FormCadastro({
         <input
           type="text"
           name="cpf"
-          className={stateType === "recrutador" ? "" : "hidden"}
           placeholder="CPF"
           ref={cpfUser}
         />
         <span className={validation.cpf ? "hidden" : "text-[red] text-lg w-[70%]"}>
           CPF inválido !
         </span>
+        <input
+          type="text"
+          name="empresa"
+          className={stateType === "recrutador" ? "" : "hidden"}
+          placeholder="Empresa"
+          ref={empresa}
+        />
         <input
           type="password"
           name="senha"

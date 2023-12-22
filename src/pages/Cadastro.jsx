@@ -5,10 +5,10 @@ import { supabase } from "../utils/supabase";
 import { useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 import hashPassword from "../utils/passwordHash";
-import POST_SUPABASE from "../utils/postFunction";
+import POST_SPC from "../utils/postFunction";
 
 export default function Cadastro() {
-
+  const type = sessionStorage.getItem("type")
   const navigate = useNavigate("")
 
   const nameUser = useRef("");
@@ -16,40 +16,33 @@ export default function Cadastro() {
   const senhaUser = useRef("");
   const confirmarSenhaUser = useRef("");
   const cpfUser = useRef("");
+  const empresa = useRef("");
 
   const handleClick = async () => {
     try {
-      const {data, error} = await supabase.auth.signUp({
-        email: emailUser.current.value,
-        password: senhaUser.current.value,
-      })
-
-      if (error) {
-        console.log(error)
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Esse Email já está registrado !"
-        });
-      } else {
-        const userJson = data.user
-        userJson.nome = nameUser.current.value
         const senha = await hashPassword(senhaUser.current.value)
-        userJson.senha = senha
-        userJson.cpf = cpfUser.current.value
-        sessionStorage.setItem("userAuth", JSON.stringify(userJson))
-        if(userJson.cpf != "") {
-          await POST_SUPABASE("recrutador", {
-            cpf: userJson.cpf,
-            nome: userJson.nome,
-            email: userJson.email,
-            senha: userJson.senha,
-            uid: userJson.id
-          })
+        const response = await POST_SPC({
+            "protocol_msg": "criar",
+            "nome": nameUser.current.value,
+            "email": emailUser.current.value,
+            "cpf": cpfUser.current.value,
+            "type": type === "candiadato" ? "c" : "r",
+            "senha": senha,
+            "empresa": empresa.current.value
+        })
+        const data = await response.json();
+        console.log(data)
+        if(data.status == "201 Created") {
+          sessionStorage.setItem("authenticated", true)
+          sessionStorage.setItem("userAuth", data.data)
+          navigate("/CreatePage")
+        } else if (data.status === "400 Bad Request") {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: data.message,
+          });
         }
-        sessionStorage.setItem("authenticated", true)
-        navigate("/CreatePage")
-      }
       
     } catch (e) {
       console.error(e);
@@ -76,6 +69,7 @@ export default function Cadastro() {
           senhaUser={senhaUser}
           cpfUser={cpfUser}
           confirmarSenhaUser={confirmarSenhaUser}
+          empresa={empresa}
         />
       </div>
     </section>

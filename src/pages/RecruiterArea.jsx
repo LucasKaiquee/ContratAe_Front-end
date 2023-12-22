@@ -5,103 +5,60 @@ import Footer from "../components/Footer/Footer";
 import { Spinner } from "@material-tailwind/react";
 import { FaPlusCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { supabase } from "../utils/supabase";
+import POST_SPC from "../utils/postFunction";
 import { useNavigate } from "react-router-dom";
+import { FaGrinBeamSweat } from "react-icons/fa";
 import "./RecruiterArea.css";
 
 export default function RecruiterArea() {
-  const [data, setData] = useState({
-    data: [],
-    showVaga: false
-  });
   const navigate = useNavigate("");
-  // const [showVaga, setShowVaga] = useState(false);
-  const userRecruiter = JSON.parse(sessionStorage.getItem("userAuth"));
+  const [showCandidato, setShowCandidato] = useState([]);
+  const userRecruiter = sessionStorage.getItem("userAuth")
 
-  const URL_SUPABASE =
-    "https://ixdptueotrcwtqqrizar.supabase.co/rest/v1/candidato";
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml4ZHB0dWVvdHJjd3RxcXJpemFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTkzNjIxNjgsImV4cCI6MjAxNDkzODE2OH0.Mo_Kp2NUYZ6APt-JmP8br6cOvPKM9HqZ33--cmpbstA";
-
-  const options = {
-    method: "GET",
-    headers: {
-      apikey: API_KEY,
-      Authorization: `Bearer ${API_KEY}`,
-      "Content-Type": "application/json",
-    },
-  };
-
-  const hadleShowVagas = async () => {
+  const showCandidaturas = async () => {
     try {
-      const { data: vaga, error } = await supabase
-        .from("vaga")
-        .select("*")
-        .eq("id_recrutador", userRecruiter.cpf);
-
-      if (error) {
-        console.error(error);
-        return;
-      }
-      
-      setData({
-        data: vaga,
-        showVaga: true
-      })
-      
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getSupabaseCandidatos = async () => {
-    try {
-      const response = await fetch(URL_SUPABASE, options);
-      const data = await response.json();
-
-      setData({
-        data: data,
-        showVaga: false
-      });
+      const response = await POST_SPC({
+        "protocol_msg": "recuperarVaga",
+        "cpf": userRecruiter
+    }) 
+      const data = await response.json()
+      const responseServer = await POST_SPC({
+          "protocol_msg": "verCandidaturas",
+          "type": "r",
+          "cpf": userRecruiter,
+          "idVaga": data.data
+      }) 
+      const dataServer = await responseServer.json()
+      console.log(dataServer)
+      if(dataServer.status === "200 OK") {
+        setShowCandidato(dataServer.data)
+      } 
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    getSupabaseCandidatos();
+    showCandidaturas()
   }, []);
 
   return (
     <section className="recruiter-area">
       <Navbar />
-      <button onClick={() => {navigate("/CreatePage")}} className="button-new-vaga" title="Criar vaga"><FaPlusCircle /></button>
-      <div className="button-recuiter-area">
-        <button onClick={() => {hadleShowVagas()}} className="button-action-recruiter">Ver minhas vagas</button>
-        <button onClick={() => {getSupabaseCandidatos()}} className="button-action-recruiter">Ver Candidatos</button>
-      </div>
-      
+      {/* <button onClick={() => {navigate("/CreatePage")}} className="button-new-vaga" title="Criar vaga"><FaPlusCircle /></button> */}
       <div className="card-recruiter">
-        {data.showVaga ? (
-          data.data.map((e, i) => (
-            <Card
-              key={i}
-              nome={e.nome}
-              area={e.area}
-              descricao={e.descricao}
-              nomeEmpresa={e.nome_empresa}
-              quantidade={e.quantidade}
-              requisito={e.requisito}
-              salario={e.salario}
-              buttonAction={null}
-              buttonTitle={"Ver Aplicações"}
-            />
+        <h3 className="text-center text-[20px] font-bold">Candidaturas</h3>
+        {showCandidato.length != 0 ? 
+          showCandidato.map((e, i) => (
+            <Perfil key={i} user={e}/>
           ))
-        ) : data.data.length !== 0 ? (
-          data.data.map((e, i) => <Perfil key={i} user={e} />)
-        ) : (
-          <Spinner className="h-12 w-12 m-[auto] my-[20%]" color="blue" />
-        )}
+        : 
+          <div className="w-[100vw] h-[80vh] text-center text-[70px] mt-[-30px] flex items-center justify-center gap-5">
+            <h1 className="">Sua vaga não possui candidaturas !</h1>
+            <i className="text-[#00AFF9]"><FaGrinBeamSweat /></i> 
+          </div>
+          
+        }
       </div>
       <Footer />
     </section>
