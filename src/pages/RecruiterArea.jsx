@@ -1,9 +1,6 @@
 import Perfil from "../components/Perfil/Perfil";
-import Card from "../components/Card/Card";
 import Navbar from "../components/NavBar/Navbar";
 import Footer from "../components/Footer/Footer";
-import { Spinner } from "@material-tailwind/react";
-import { FaPlusCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import POST_SPC from "../utils/postFunction";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +19,16 @@ export default function RecruiterArea() {
         "cpf": userRecruiter
     }) 
       const data = await response.json()
-      const responseServer = await POST_SPC({
+      if (data.status === "404 Not Found") {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.message 
+        });
+
+        navigate("/CreatePage")
+      } else {
+        const responseServer = await POST_SPC({
           "protocol_msg": "verCandidaturas",
           "type": "r",
           "cpf": userRecruiter,
@@ -33,6 +39,7 @@ export default function RecruiterArea() {
       if(dataServer.status === "200 OK") {
         setShowCandidato(dataServer.data)
       } 
+      }
     } catch (error) {
       console.error(error);
     }
