@@ -8,18 +8,18 @@ import Swal from "sweetalert2";
 
 // eslint-disable-next-line react/prop-types
 export default function Entrar() {
-  const type = sessionStorage.getItem("type")
+  
   const navigate = useNavigate("");
 
   const senhaUser = useRef("");
   const cpfUser = useRef("");
-
   const handleButtonClick = async () => {
     try {
+      const type = sessionStorage.getItem("type")
       const senha = await hashPassword(senhaUser.current.value);
       const response = await POST_SPC({
         protocol_msg: "login",
-        type: type === "candiadato" ? "c" : "r",
+        type: type === "candidato" ? "c" : "r",
         cpf: cpfUser.current.value,
         senha: senha,
       });
@@ -37,10 +37,14 @@ export default function Entrar() {
           title: "Oops...",
           text: data.message,
         });
-      } else {
+      } else if (data.message != "Recrutador"){
         sessionStorage.setItem("userAuth", cpfUser.current.value)
         sessionStorage.setItem("authenticated", true)
         navigate("/Dashboard")
+      } else {
+        sessionStorage.setItem("userAuth", cpfUser.current.value)
+        sessionStorage.setItem("authenticated", true)
+        navigate("/RecruiterArea")
       }
     } catch (e) {
       console.error(e);
